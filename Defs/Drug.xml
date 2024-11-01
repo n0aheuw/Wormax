@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+	<!--Wormax is a ThingDef, and we are telling-->
+	<!--the game that we want to make it a Drug-->
+	<ThingDef ParentName="MakeableDrugBase">
+		<!--What XML calls our item-->
+		<defName>Wormax</defName>
+		<!--What Rimworld calls our item-->
+		<label>Wormax</label>
+		<!--Description of our item when you click the "i" button-->
+		<description>First discovered in 1971 by Belgium pharmaceutical company "NotJanssen Pharmaceutical," this single-dose drug completely cures many varieties of intestinal parasite. Including GUT WORMS. It quickly made a place for itself among the World Health Organisation's list of essential medicines before the collapse of Earth made the WHO redundant.</description>
+		<!--This stuff loads the textures for our drug-->
+		<graphicData>
+			<texPath>Things/Item/Drug/Wormax</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<!--How much work does it take to make this item-->
+			<WorkToMake>250</WorkToMake>
+			<!--How much is this item worth to traders?-->
+			<MarketValue>50</MarketValue>
+			<!--How much does the item weigh, in KG I think?-->
+			<Mass>0.01</Mass>
+		</statBases>
+		<!--This is the recipe for our item-->
+		<!--I.e what it takes to craft it-->
+		<costList>
+			<Neutroamine>1</Neutroamine>
+			<Chocolate>1</Chocolate>
+		</costList>
+		<!--All the values we need for an ingestible drug-->
+		<ingestible>
+			<foodType>Processed</foodType>
+			<drugCategory>Medical</drugCategory>
+			<baseIngestTicks>150</baseIngestTicks>
+			<chairSearchRadius>4</chairSearchRadius>
+			<!--Can someone feed you this drug-->
+			<nurseable>true</nurseable>
+			<outcomeDoers>
+				<li Class = "Wormax.IngestionOutcomeDoer_RemoveHediff">
+					<removeThisThing>GutWorms</removeThisThing>
+				</li>
+			</outcomeDoers>
+		</ingestible>
+		<!--This comp is needed for the "drug policy" menu-->
+		<!--It also defines a bunch of important properties about the drug-->
+		<comps>
+			<li Class="CompProperties_Drug">
+				<listOrder>1030</listOrder>
+				<overdoseSeverityOffset>0.08~0.14</overdoseSeverityOffset>
+			</li>
+		</comps>
+		<!--This gives the game information about the research we need-->
+		<!--to unlock this item, and the buildings that we can make-->
+		<!--our item from.-->
+		<recipeMaker>
+			<researchPrerequisite>DrugProduction</researchPrerequisite>
+			<recipeUsers>
+				<li>DrugLab</li>
+			</recipeUsers>
+			<soundWorking>Recipe_Drug</soundWorking>
+		</recipeMaker>
+	</ThingDef>
+</Defs>
